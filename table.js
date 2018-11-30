@@ -42,7 +42,7 @@ function createCustomerRow() {
         
     balance.innerHTML = Cbalance;
 
-    deleCust.innerHTML = '<button id="deleteCust" onclick="deleteCustomer(this, event)">Delete</button>';
+    deleCust.innerHTML = '<button id="deleteCust" onclick="deleteCustomer(this)">Delete</button>';
 
     newCust.style.backgroundColor = " bisque";
 
@@ -101,7 +101,6 @@ function clearInput() {
 
 function deleteCustomer(r, event) {
     var i = r.parentNode.parentNode.rowIndex;
-    console.log(event.target)
     document.getElementById("tableContainer").deleteRow(i);
 }
 
