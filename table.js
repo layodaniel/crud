@@ -99,7 +99,7 @@ function clearInput() {
 }
 
 
-function deleteCustomer(r, event) {
+function deleteCustomer(r) {
     var i = r.parentNode.parentNode.rowIndex;
     document.getElementById("tableContainer").deleteRow(i);
 }
