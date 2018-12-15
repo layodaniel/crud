@@ -12,6 +12,11 @@ function createCustomerRow() {
         
     let Cbalance = document.getElementById("balance").value;
 
+    if (isNaN(Cbalance)) {
+        alert("Balance must be a number");
+        return;
+    }
+
     Cbalance = parseInt(Cbalance, 10);
 
     if ( Cname == '' || Cemail == '' || Cphone == '' || Cbalance == '' ) {
@@ -42,7 +47,7 @@ function createCustomerRow() {
         
     balance.innerHTML = Cbalance;
 
-    deleCust.innerHTML = '<button class="deleteCust" onclick="deleteCustomer(this, event)">Delete</button>';
+    deleCust.innerHTML = '<button class="deleteCust" onclick="deleteCustomer(event)">Delete</button>';
 
     newCust.style.backgroundColor = " bisque";
 
@@ -99,13 +104,14 @@ function clearInput() {
 }
 
 
-function deleteCustomer(r, event) {
+function deleteCustomer(event) {
     const totalBalanceCell = document.getElementById("second");
+    const targetRow = event.target.closest("tr");
     const totalBalance = totalBalanceCell.innerHTML;
-    const rowBalance = event.target.closest("tr").childNodes[3].innerHTML;
+    const rowBalance = targetRow.childNodes[3].innerHTML;
     const newBalance = totalBalance - rowBalance;
     totalBalanceCell.innerHTML = newBalance;
-    const index = r.parentNode.parentNode.rowIndex;
+    const index = targetRow.rowIndex;
     document.getElementById("tableContainer").deleteRow(index);
 }
 
