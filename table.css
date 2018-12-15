@@ -117,7 +117,7 @@ input[type="submit"] {
     font-size: 20px;
 }
 
-#deleteCust {
+.deleteCust {
     
     color: rgb(190, 81, 9);
 

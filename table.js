@@ -1,16 +1,16 @@
 
 
-var total = 0;
+let total = 0;
 
 function createCustomerRow() {
     
-    var Cname = document.getElementById("customer").value,
+    const Cname = document.getElementById("customer").value,
         
     Cemail = document.getElementById("email").value,
         
-    Cphone = document.getElementById("phone").value,
+    Cphone = document.getElementById("phone").value;
         
-    Cbalance = document.getElementById("balance").value,
+    let Cbalance = document.getElementById("balance").value;
 
     Cbalance = parseInt(Cbalance, 10);
 
@@ -20,7 +20,7 @@ function createCustomerRow() {
 
     } else {
 
-    var newRow = document.getElementById("tableContainer"),
+    const newRow = document.getElementById("tableContainer"),
 
     newCust = newRow.insertRow(tableContainer.length),
 
@@ -42,7 +42,7 @@ function createCustomerRow() {
         
     balance.innerHTML = Cbalance;
 
-    deleCust.innerHTML = '<button id="deleteCust" onclick="deleteCustomer(this)">Delete</button>';
+    deleCust.innerHTML = '<button class="deleteCust" onclick="deleteCustomer(this, event)">Delete</button>';
 
     newCust.style.backgroundColor = " bisque";
 
@@ -99,8 +99,13 @@ function clearInput() {
 }
 
 
-function deleteCustomer(r) {
-    var i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("tableContainer").deleteRow(i);
+function deleteCustomer(r, event) {
+    const totalBalanceCell = document.getElementById("second");
+    const totalBalance = totalBalanceCell.innerHTML;
+    const rowBalance = event.target.closest("tr").childNodes[3].innerHTML;
+    const newBalance = totalBalance - rowBalance;
+    totalBalanceCell.innerHTML = newBalance;
+    const index = r.parentNode.parentNode.rowIndex;
+    document.getElementById("tableContainer").deleteRow(index);
 }
 
